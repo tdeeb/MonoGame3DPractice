@@ -100,6 +100,13 @@ namespace _3D_Practice
             MouseState state = Mouse.GetState(gameWindow);
             KeyboardState kstate = Keyboard.GetState();
 
+            float unitsPS = unitsPerSecond;
+
+            if (kstate.IsKeyDown(Keys.LeftShift) == true || kstate.IsKeyDown(Keys.RightShift) == true)
+            {
+                unitsPS += 3f;
+            }
+
             if (kstate.IsKeyDown(Keys.Space) && kbState.IsKeyDown(Keys.Space) == false)
             {
                 //Reset everything
@@ -110,27 +117,27 @@ namespace _3D_Practice
 
             if (kstate.IsKeyDown(Keys.W))
             {
-                Position += (cameraWorld.Forward * unitsPerSecond) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Position += (cameraWorld.Forward * unitsPS) * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             else if (kstate.IsKeyDown(Keys.S) == true)
             {
-                Position += (cameraWorld.Backward * unitsPerSecond) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Position += (cameraWorld.Backward * unitsPS) * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             if (kstate.IsKeyDown(Keys.A) == true)
             {
-                Position += (cameraWorld.Left * unitsPerSecond) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Position += (cameraWorld.Left * unitsPS) * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             else if (kstate.IsKeyDown(Keys.D) == true)
             {
-                Position += (cameraWorld.Right * unitsPerSecond) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Position += (cameraWorld.Right * unitsPS) * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             if (kstate.IsKeyDown(Keys.Q) == true)
             {
-                Position += (Vector3.Down * unitsPerSecond) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Position += (Vector3.Down * unitsPS) * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             else if (kstate.IsKeyDown(Keys.E) == true)
             {
-                Position += (Vector3.Up * unitsPerSecond) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Position += (Vector3.Up * unitsPS) * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
             if (state.RightButton == ButtonState.Pressed)
