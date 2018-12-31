@@ -143,6 +143,8 @@ namespace _3D_Practice
             effect.TextureEnabled = true;
             effect.Texture = checkerboardTexture;
 
+            //GraphicsDevice.RasterizerState = RasterizerState.CullNone;
+
             foreach (var pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();

@@ -92,11 +92,20 @@ namespace _3D_Practice
 
         private void RecreateViewMatrix()
         {
+            // For the camera to be free, set the Up to be the world's Up 
+            // This means the x, y, and roll will no longer be fixed to any system coordinates
+            // This is a fixed camera, meaning the Up is invariant to the system up
+            //camerasWorld = Matrix.CreateWorld(camerasWorld.Translation, camerasWorld.Forward, Up);
+            //viewMatrix = Matrix.CreateLookAt(camerasWorld.Translation, camerasWorld.Forward + camerasWorld.Translation, camerasWorld.Up);
+
+            //cameraWorld = Matrix.CreateWorld(cameraWorld.Translation, cameraWorld.Forward, Vector3.Up);
             viewMatrix = Matrix.CreateLookAt(cameraWorld.Translation, cameraWorld.Forward + cameraWorld.Translation, cameraWorld.Up);
         }
 
         public void Update(GameTime gameTime)
         {
+            //Console.WriteLine(cameraWorld.Forward);
+
             MouseState state = Mouse.GetState(gameWindow);
             KeyboardState kstate = Keyboard.GetState();
 
@@ -133,11 +142,11 @@ namespace _3D_Practice
             }
             if (kstate.IsKeyDown(Keys.Q) == true)
             {
-                Position += (Vector3.Down * unitsPS) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Position += (cameraWorld.Down * unitsPS) * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             else if (kstate.IsKeyDown(Keys.E) == true)
             {
-                Position += (Vector3.Up * unitsPS) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Position += (cameraWorld.Up * unitsPS) * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
             if (state.RightButton == ButtonState.Pressed)
